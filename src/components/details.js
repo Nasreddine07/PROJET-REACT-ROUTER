@@ -1,0 +1,37 @@
+import React from "react";
+import { useParams } from "react-router-dom";
+
+const Details = ({ movies }) => {
+  const { idmovie } = useParams();
+  const foundmovie = movies.find((el) => el.id === idmovie);
+  return (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "20% 20% 20% 20% 20%",
+        gridTemplateRows: "20% 20% 20% 20% 20%",
+        gap: "20px",
+        marginLeft: "60px",
+        marginRight: "60px",
+      }}
+    >
+      <div style={{ gap: "20px" }}>
+        <h1 style={{ gridArea: "1/1/2/1" }}>{foundmovie.Title}</h1>
+        <img
+          style={{ height: "309px", width: "299px", gridArea: "2/1/4/1" }}
+          src={foundmovie.posterURL}
+          alt="movie"
+        ></img>
+        <p style={{ gridArea: "4/1/5/2", fontWeight: "bold" }}>
+          {foundmovie.description}
+        </p>
+      </div>
+
+      <iframe title='iframe' style={{ gridArea: "1/3/3/6", width: "700px", height: "500px" }}
+        src={foundmovie.trailerUrl}
+      ></iframe>
+    </div>
+  );
+}
+
+export default Details;
